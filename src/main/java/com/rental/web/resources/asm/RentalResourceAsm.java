@@ -46,7 +46,7 @@ public class RentalResourceAsm extends ResourceAssemblerSupport<Rental, RentalRe
         rentalResource.setRentalDateRequested(rental.getRentalDateRequested());
         rentalResource.setTime(rental.getTime());
         if (rental.getUser() != null)
-            rentalResource.add(linkTo(methodOn(UserController.class).getUser(rental.getUser().getName())).withRel("User"));
+            rentalResource.add(linkTo(methodOn(UserController.class).getUser(rental.getUser().getName())).withRel("user"));
         return rentalResource;
     }
 

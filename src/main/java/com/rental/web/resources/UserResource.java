@@ -1,8 +1,12 @@
 package com.rental.web.resources;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.rental.persistence.model.entities.User;
 import org.springframework.hateoas.ResourceSupport;
+
+import javax.validation.constraints.NotBlank;
 
 /**
  * <p>User resource from and to the client.</p>
@@ -12,7 +16,9 @@ import org.springframework.hateoas.ResourceSupport;
 public class UserResource extends ResourceSupport {
 
     private Long rid;
+    @NotBlank
     private String name;
+    @NotBlank
     private String password;
 
     /**
@@ -56,6 +62,7 @@ public class UserResource extends ResourceSupport {
      *
      * @return String with the user password
      */
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
@@ -64,6 +71,8 @@ public class UserResource extends ResourceSupport {
      *
      * @param password with the password
      */
+
+    @JsonProperty
     public void setPassword(String password) {
         this.password = password;
     }

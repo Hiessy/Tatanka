@@ -11,14 +11,7 @@ import com.rental.persistence.model.entities.Rental;
  * @version 1.0
  */
 public interface RentalService {
-    /**
-     * <p>Method for creating a new rental request.</p>
-     *
-     * @param userId of the user requesting the rental.
-     * @param rental object with the data of the request.
-     * @return Rental object that was persisted in the data base.
-     */
-    Rental createRental(Long userId, Rental rental);
+
 
     /**
      *<p>Method for getting the price on a rental.</p>

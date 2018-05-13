@@ -1,5 +1,6 @@
 package com.rental.service;
 
+import com.rental.persistence.model.entities.Rental;
 import com.rental.persistence.model.entities.User;
 
 /**
@@ -25,5 +26,14 @@ public interface UserService {
      * @return User object with all the data.
      */
     User getUser(String name);
+
+    /**
+     * <p>Method for creating a new rental request.</p>
+     *
+     * @param userId of the user requesting the rental.
+     * @param rental object with the data of the request.
+     * @return Rental object that was persisted in the data base.
+     */
+    Rental createRental(Long userId, Rental rental);
 
 }

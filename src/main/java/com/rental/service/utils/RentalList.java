@@ -22,7 +22,4 @@ public class RentalList {
         return rentals;
     }
 
-    public void setRentals(List<Rental> rentals) {
-        this.rentals = rentals;
-    }
 }

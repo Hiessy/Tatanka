@@ -1,11 +1,8 @@
 package com.rental.web.controller;
 
-import com.rental.service.RentalService;
-import com.rental.service.exception.InvalidDateException;
-import com.rental.service.exception.UserDoesNotExistsException;
-import com.rental.service.utils.RentalList;
 import com.rental.persistence.model.entities.Rental;
-import com.rental.web.exception.ConflictException;
+import com.rental.service.RentalService;
+import com.rental.service.utils.RentalList;
 import com.rental.web.exception.NotFoundException;
 import com.rental.web.resources.RentalListResource;
 import com.rental.web.resources.RentalResource;
@@ -16,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -40,32 +38,6 @@ public class RentalController {
     }
 
     /**
-     * <p>POST method to create a new rental request for a user.</p>
-     *
-     * @param userId         representing the user id of the user requesting to rent the bicycles.
-     * @param rentalResource representing the newly rented bike information the customer wants.
-     * @return RentalResource with the complete information wrapped in response entity with the appropriate HTTP code.
-     * @throws UserDoesNotExistsException if the user has not been created
-     * @throws InvalidDateException if the date for the request if prior than today date.
-     */
-    @RequestMapping(value = "{userId}", method = RequestMethod.POST)
-    public ResponseEntity<RentalResource> createRental(@PathVariable Long userId, @RequestBody RentalResource rentalResource) {
-        LOGGER.info("UserId, " + userId + ", is booking a rental");
-        try {
-            Rental rentedBike = rentalService.createRental(userId, rentalResource.toRental());
-            LOGGER.info("Rental request processed successfully");
-            RentalResource resource = new RentalResourceAsm().toResource(rentedBike);
-            return new ResponseEntity<>(resource, HttpStatus.CREATED);
-        } catch (UserDoesNotExistsException e) {
-            LOGGER.error("The user trying to rent does not exist.");
-            throw new NotFoundException(e);
-        } catch(InvalidDateException e){
-            LOGGER.error("The date entered inst valid.");
-            throw new ConflictException(e.getMessage());
-        }
-    }
-
-    /**
      * <p>GET method to retrieve all existing rental requests.</p>
      *
      * @return List of RentalResources with all existing rentals with the appropriate HTTP code. If no rental are
@@ -75,9 +47,9 @@ public class RentalController {
     public ResponseEntity<RentalListResource> getAllRentals() {
         LOGGER.info("Getting all rentals");
         RentalList rentalList = rentalService.getAllRentals();
-        if (rentalList == null) {
+        if (rentalList.getRentals().isEmpty()) {
             LOGGER.error("No rentals where found");
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            throw new NotFoundException("No rental have been created");
         }
         LOGGER.info("Rentals where found successfully");
         RentalListResource rentalListResource = new RentalListResourceAsm().toResource(rentalList);
@@ -91,7 +63,7 @@ public class RentalController {
      * @return RentalResource with the appropriate HTTP code and the price for the requested quote.
      */
     @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity<RentalResource> getRentalPricing(@RequestBody RentalResource rentalResource) {
+    public ResponseEntity<RentalResource> getRentalPricing(@RequestBody @Validated RentalResource rentalResource) {
         LOGGER.info("Get price for rental");
         Rental rentalWithQuote = rentalService.getPricing(rentalResource.toRental());
         RentalResource rentalResourceWithQuote = new RentalResourceAsm().toResource(rentalWithQuote);

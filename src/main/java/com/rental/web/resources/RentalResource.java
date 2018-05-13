@@ -3,10 +3,11 @@ package com.rental.web.resources;
 import com.rental.persistence.model.entities.Rental;
 import org.springframework.hateoas.ResourceSupport;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 /**
- * <p>Rental resource from and to the client.</p>
+ * <p>Rental resource from and to the client. The time and amount of bikes are always required</p>
  *
  * @author Martín Díaz
  * @version 1.0
@@ -14,7 +15,9 @@ import java.time.LocalDateTime;
 public class RentalResource extends ResourceSupport {
 
     private Long rid;
+    @NotNull
     private Integer time;
+    @NotNull
     private Integer numberOfBikes;
     private Double price;
     private LocalDateTime rentalDateRequested;
