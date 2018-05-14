@@ -1,8 +1,5 @@
 package com.rental.service;
 
-import com.rental.config.DataSourceConfig;
-import com.rental.persistence.repository.jpa.JpaRentalRepository;
-import com.rental.persistence.repository.jpa.JpaUserRepository;
 import com.rental.service.utils.PricingCalculator;
 import junit.framework.TestCase;
 import org.junit.Test;

@@ -1,4 +1,5 @@
 
+
 ![alt text](https://github.com/Hiessy/Tatanka/blob/master/src/main/resources/image/icon.png?raw=true "Logo Title Text 1")
 
 # Tatanka Project
@@ -74,12 +75,12 @@ The following show how to consume the exposed API. **Data Params** should be pla
 
 | URL        | Method  | URL Params      | Data Params     | Success Response | Error Response
 |:-------------:|:-----:|:-------------:|:-----|:---------:|:-------------:|
-| /v1/rental  | <font color="#008800">GET</font> |  | name<br> password | **200** | **404** |
+| /v1/rental  | <font color="#008800">GET</font> |  |  | **200** | **404** |
 | /v1/rental/{rentalId} | <font color="#DD0000">DELETE</font> | rentalId |  | **200** | **404** |
 | /v1/rental | <font color="#6600FF">PUT</font> |  | time<br> numberOfBikes | **200** | **400**  |
-| /v1/user/{userId}/rental      | <font color="#0000EE">POST</font> |  |  | **201** | **404** **400** |
-| /v1/user |   <font color="#0000EE">POST</font> | userId   | time<br> numberOfBikes<br> rentalDateRequested | **201**   | **409** **400** |
-| /v1/user/{name} | <font color="#008800">GET</font> | name |  | **200**  | **409** **400**     |
+| /v1/user/{userId}/rental      | <font color="#0000EE">POST</font> | userId | time<br> numberOfBikes<br> rentalDateRequested | **201** | **404**<br> **400** |
+| /v1/user |   <font color="#0000EE">POST</font> |    | name<br> password | **201**   | **409**<br> **400** |
+| /v1/user/{name} | <font color="#008800">GET</font> | name |  | **200**  | **409**<br> **400**     |
 ## Built With
 
 * [Spring Boot](https://projects.spring.io/spring-boot/) - The web framework
