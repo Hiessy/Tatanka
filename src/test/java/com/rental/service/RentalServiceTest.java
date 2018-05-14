@@ -4,12 +4,15 @@ import com.rental.persistence.model.entities.Rental;
 import com.rental.persistence.model.entities.User;
 import com.rental.persistence.repository.RentalRepository;
 import com.rental.service.impl.RentalServiceImpl;
+import com.rental.service.utils.PricingCalculator;
 import com.rental.service.utils.RentalList;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -25,6 +28,7 @@ import static org.mockito.Mockito.when;
  * @author Martín Diaz
  * @version 1.0
  */
+@RunWith(SpringJUnit4ClassRunner.class)
 public class RentalServiceTest {
 
     @InjectMocks
@@ -32,6 +36,9 @@ public class RentalServiceTest {
 
     @Mock
     private RentalRepository rentalRepository;
+    @Mock
+    private PricingCalculator pricingCalculator;
+
     @Before
     public void setup() {
 
@@ -40,28 +47,31 @@ public class RentalServiceTest {
     }
 
     @Test
-    public void getPricingTest(){
+    public void getPricingTest() {
 
         Rental rental = new Rental();
         rental.setTime(2);
         rental.setNumberOfBikes(2);
+
+        when(pricingCalculator.calculatePrice(any(Integer.class), any(Integer.class))).thenReturn(new Double(20.0));
         rentalService.getPricing(rental);
 
-        assertEquals(new Double(20.0),rental.getPrice());
+        assertEquals(new Double(20), rental.getPrice());
     }
 
     @Test
-    public void getAllRentalsTest(){
+    public void getAllRentalsTest() {
 
         when(rentalRepository.findAllRentals()).thenReturn(setupRentalList());
 
         RentalList rentalList = rentalService.getAllRentals();
 
-        assertEquals(2,rentalList.getRentals().size());
+        assertEquals(2, rentalList.getRentals().size());
 
     }
+
     @Test
-    public void removeRentalTest(){
+    public void removeRentalTest() {
 
         User user = new User("Martin", "password");
         user.setId(1L);
@@ -77,20 +87,20 @@ public class RentalServiceTest {
 
         Rental deletedRental = rentalService.removeRental(any(Long.class));
 
-        assertEquals(new Long(1L),deletedRental.getUser().getId());
-        assertEquals("Martin",deletedRental.getUser().getName());
+        assertEquals(new Long(1L), deletedRental.getUser().getId());
+        assertEquals("Martin", deletedRental.getUser().getName());
         assertEquals("password", deletedRental.getUser().getPassword());
 
-        assertEquals(new Long(2L),deletedRental.getId());
-        assertEquals(new Integer(2),deletedRental.getNumberOfBikes());
-        assertEquals(new Integer(2),deletedRental.getTime());
-        assertEquals(new Double(20.0),deletedRental.getPrice());
+        assertEquals(new Long(2L), deletedRental.getId());
+        assertEquals(new Integer(2), deletedRental.getNumberOfBikes());
+        assertEquals(new Integer(2), deletedRental.getTime());
+        assertEquals(new Double(20.0), deletedRental.getPrice());
     }
 
     private List<Rental> setupRentalList() {
         List<Rental> rentals = new ArrayList<>();
 
-        Rental rentalA = new Rental(2, 1,10.0, LocalDateTime.now().plusDays(2));
+        Rental rentalA = new Rental(2, 1, 10.0, LocalDateTime.now().plusDays(2));
         Rental rentalB = new Rental(1, 2, 10.0, LocalDateTime.now().plusDays(2));
         User userA = new User("Martin", "password");
         User userB = new User("Juan", "password");

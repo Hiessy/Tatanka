@@ -8,6 +8,7 @@ import com.rental.service.exception.InvalidDateException;
 import com.rental.service.exception.UserDoesNotExistsException;
 import com.rental.service.exception.UserExistsException;
 import com.rental.service.impl.UserServiceImpl;
+import com.rental.service.utils.PricingCalculator;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -38,6 +39,9 @@ public class UserServiceTest {
 
     @Mock
     private RentalRepository rentalRepository;
+
+    @Mock
+    private PricingCalculator pricingCalculator;
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
@@ -99,7 +103,7 @@ public class UserServiceTest {
 
         when(userRepository.getUserById(any(Long.class))).thenReturn(user);
         when(rentalRepository.createRental(any(Rental.class))).thenReturn(rental);
-
+        when(pricingCalculator.calculatePrice(any(Integer.class), any(Integer.class))).thenReturn(new Double(20.0));
         Rental createdRental = userService.createRental(user.getId(), rental);
 
         assertEquals(new Double(20.0), createdRental.getPrice());

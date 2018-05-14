@@ -28,6 +28,8 @@ public class RentalServiceImpl implements RentalService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private PricingCalculator pricingCalculator;
 
     /**
      *  <p>Method for retrieving all existing rentals.</p>
@@ -50,7 +52,7 @@ public class RentalServiceImpl implements RentalService {
     @Override
     public Rental getPricing(Rental rental) {
         LOGGER.debug("Calculating price");
-        Double price = PricingCalculator.calculatePrice(rental.getTime(),rental.getNumberOfBikes());
+        Double price = pricingCalculator.calculatePrice(rental.getTime(),rental.getNumberOfBikes());
         rental.setPrice(price);
         return rental;
     }

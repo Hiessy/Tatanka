@@ -24,7 +24,8 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     @Autowired
     private RentalRepository rentalRespository;
-
+    @Autowired
+    private PricingCalculator pricingCalculator;
     /**
      * <p>Method to create a new system user.</p>
      *
@@ -82,7 +83,7 @@ public class UserServiceImpl implements UserService {
             throw new UserDoesNotExistsException("no user id was found for id: " + userId);
         }
 
-        Double price = PricingCalculator.calculatePrice(rental.getTime(), rental.getNumberOfBikes());
+        Double price = pricingCalculator.calculatePrice(rental.getTime(), rental.getNumberOfBikes());
         rental.setPrice(price);
         rental.setUser(storedUser);
         LOGGER.debug("Creating new rental");
