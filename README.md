@@ -1,13 +1,14 @@
 
+![alt text](https://github.com/Hiessy/Tatanka/blob/master/src/main/resources/image/icon.png?raw=true "Logo Title Text 1")
 
-# Tatanka Project![alt text](https://github.com/Hiessy/Tatanka/tree/master/src/main/resources/images/icon.png "Logo Title Text 1")
+# Tatanka Project
 
 Simple restful API as an example, with some CRUD operations and data storage logic:
 
 ## Table of Contents
 1. [Context](#context)
 2. [Getting Started](#getting-started)	
-		a.[Prerequisites](#prerequisites)
+		a.[Prerequisites](#prerequisites)<br>
 		b.[Installing](#installing)
 3. [Checking code coverage](#checking-code-coverage)
 4. [Running the Tatanka](#running-the-tatanka)
@@ -29,10 +30,9 @@ The source code was build in IntelliJ IDEA community edition as a maven project.
 
 In order to build the project, the following will be required:
 
-[Java jdk 1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
-[IntelliJ IDEA](https://www.jetbrains.com/idea/download/index.html)
-[Maven 3.x](https://maven.apache.org/download.cgi)
-
+[Java jdk 1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)<br>
+[Maven 3.x](https://maven.apache.org/download.cgi)<br>
+[IntelliJ IDEA](https://www.jetbrains.com/idea/download/index.html) <small><small>**Not required for maven testing**</small></small><br> 
 ### Installing
 
 In order to run the test your must first clone the project to the desired path locally
@@ -83,7 +83,7 @@ The following show how to consume the exposed API. **Data Params** should be pla
 ## Built With
 
 * [Spring Boot](https://projects.spring.io/spring-boot/) - The web framework
-* [Spring HATEOAS](https://projects.spring.io/spring-hateoas/) - For  creating REST representations that follow the HATEOAS principle
+* [Spring HATEOAS](https://projects.spring.io/spring-hateoas/) - Following the HATEOAS principle
 * [Hibernate](https://docs.jboss.org/hibernate/orm/4.1/manual/en-US/html/) - ORM framework
 * [JUnit 4.12](https://junit.org/junit4/) - Unit testing framework
 * [Mokito](http://site.mockito.org/) - Mocking framework used
