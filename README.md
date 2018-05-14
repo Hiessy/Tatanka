@@ -7,7 +7,7 @@ Simple restful API as an example, with some CRUD operations and data storage log
 
 ## Table of Contents
 1. [Context](#context)
-2. [Getting Started](#getting-started)	
+2. [Getting Started](#getting-started)<br>
 		a.[Prerequisites](#prerequisites)<br>
 		b.[Installing](#installing)
 3. [Checking code coverage](#checking-code-coverage)
