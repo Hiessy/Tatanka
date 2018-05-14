@@ -1,6 +1,6 @@
 
 
-# Tatanka Project![alt text](https://github.com/Hiessy/Tatanka/tree/master/src/main/resources/images/icon.png "Logo Title Text 1")
+# Tatanka Project![alt text](https://github.com/Hiessy/Tatanka/blob/master/src/main/resources/image/icon.png?raw=true "Logo Title Text 1")
 
 Simple restful API as an example, with some CRUD operations and data storage logic:
 
