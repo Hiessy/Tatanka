@@ -17,10 +17,10 @@ Simple restful API as an example, with some CRUD operations and data storage log
 7. [Author](#author)
 
 ## Context
-5. Rental by hour, charging $5 per hour
-6. Rental by day, charging $20 a day
-7. Rental by week, charging $60 a week
-8. Family Rental, is a promotion that can include from 3 to 5 Rentals (of any type) with a discount of 30% of the total price
+1. Rental by hour, charging $5 per hour
+2. Rental by day, charging $20 a day
+3. Rental by week, charging $60 a week
+4. Family Rental, is a promotion that can include from 3 to 5 Rentals (of any type) with a discount of 30% of the total price
 
 ## Getting Started
 
