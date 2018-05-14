@@ -1,0 +1,11 @@
+com.rental.persistence.model.entities
+com.rental.persistence.repository
+com.rental.persistence.repository.jpa
+com.rental.service
+com.rental.service.exception
+com.rental.service.impl
+com.rental.service.utils
+com.rental.web.controller
+com.rental.web.exception
+com.rental.web.resources
+com.rental.web.resources.asm

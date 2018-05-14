@@ -4,7 +4,9 @@ import com.rental.config.DataSourceConfig;
 import com.rental.persistence.model.entities.Rental;
 import com.rental.persistence.model.entities.User;
 import com.rental.persistence.repository.RentalRepository;
+import com.rental.persistence.repository.UserRepository;
 import com.rental.persistence.repository.jpa.JpaRentalRepository;
+import com.rental.persistence.repository.jpa.JpaUserRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,11 +29,15 @@ import static org.junit.Assert.assertEquals;
  * @version 1.0
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {JpaRentalRepository.class, DataSourceConfig.class})
+@ContextConfiguration(classes = {JpaUserRepository.class, JpaRentalRepository.class, DataSourceConfig.class})
 public class RentalRepositoryTest {
 
     @Autowired
     private RentalRepository rentalRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
     private Rental rental;
     private User user;
     private Long rentalId;
@@ -43,7 +49,8 @@ public class RentalRepositoryTest {
         user = new User();
         user.setName("Martin");
         user.setPassword("password");
-        user.setId(1L);
+        user.setId(userRepository.createUser(user).getId());
+
         rental = new Rental();
         rental.setTime(1);
         rental.setNumberOfBikes(1);
@@ -55,7 +62,6 @@ public class RentalRepositoryTest {
     }
 
     @Test
-    @Transactional
     public void getUserByIdTest() {
         List<Rental> rentals = rentalRepository.findAllRentals();
         assertNotNull(rentals);
