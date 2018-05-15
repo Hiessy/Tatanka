@@ -25,20 +25,18 @@ Simple restful API as an example, with some CRUD operations and data storage log
 
 ## Getting Started
 
-The source code was build in IntelliJ IDEA community edition as a maven project. Download or clone the repository into your desired local path and just import in IntelliJ. To export the project to Eclipse please read the following [export to eclipse guide](https://www.jetbrains.com/help/idea/exporting-an-intellij-idea-project-to-eclipse.html), however intelliJ is required in order to do this.
+The source code was build in IntelliJ IDEA community edition as a maven project. Download or clone the repository into the desired path and import in IntelliJ. To export the project to Eclipse please read the following [export to eclipse guide](https://www.jetbrains.com/help/idea/exporting-an-intellij-idea-project-to-eclipse.html), however intelliJ is required in order to test for code coverage, since it was tested in that IDE.
 
 ### Prerequisites
 
-In order to build the project, the following will be required:
+In order to build the project, the following programas will have to be installed:
 
 [Java jdk 1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)<br>
 [Maven 3.x](https://maven.apache.org/download.cgi)<br>
 [IntelliJ IDEA](https://www.jetbrains.com/idea/download/index.html) <small><small>**Not required for maven testing**</small></small><br> 
 ### Installing
 
-In order to run the test your must first clone the project to the desired path locally
-
-open a terminal or prompt and navigate to the desired folder and clone the repository
+Open a terminal or prompt and navigate to the desired folder and clone the repository
 
 ```
 c:\Users\hiessy> cd IdeaProjects
@@ -52,21 +50,21 @@ c:\Users\hiessy\IdeaProjects> cd Tatanka
 c:\Users\hiessy\IdeaProjects\Tatanka>mvn test
 ```
 
-Once complete you should be able to see the BUILD SUCCESS result
+Once complete you should be able to see the BUILD SUCCESS.
 ## Checking code coverage
 
 It is recommended that code coverage be checked with the IntelliJ IDE. In order to do this, open up the IDE and import the project. Once complete click on [Viewing Code Coverage Results](https://www.jetbrains.com/help/idea/viewing-code-coverage-results.html) for a guide on how to achieve this.
 ## Running the Tatanka
-Once the tests have cleared you can run the spring but project by packaging it with maven first
+Once the tests have cleared you can run the spring boot project by packaging it with maven compiler plugin defined in the *pom* file. This will rerun the test suite again, so you could probably skip running the tests with maven if you plan on building
 ```
 c:\Users\hiessy\IdeaProjects\Tatanka>mvn package
 ```
-When the build is complete, after you see the BUILD SUCCESS message cd to the target directory and run the jar package
+When the build is complete, you should see the BUILD SUCCESS message. Navigate to the target directory and run the jar package
 ```
 c:\Users\hiessy\IdeaProjects\Tatanka>cd target
 c:\Users\hiessy\IdeaProjects\Tatanka\target>java -jar rental-1.0-SNAPSHOT.jar
 ```
-This is a self contained spring boot project with an embedded database H2 so it should start fine. Tatanka create a log folder on the path where it is running and write to the rental.log file inside.
+This is a self contained spring boot project with an embedded database H2 so it should start fine. Tatanka logs folder on the path where it is running and write to the rental.log file inside. Make sure there are no other programs listening on port 8080 when running Tatanka.
 
 There is also a doc folder with the auto generated Javadoc from IntelliJ IDE.
 
